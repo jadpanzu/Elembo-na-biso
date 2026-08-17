@@ -1,0 +1,483 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Elembo Na Biso — Foire des Entrepreneurs</title>
+<meta name="description" content="Elembo Na Biso, la Foire des Entrepreneurs à Kinshasa : exposition d'entreprises locales, mode, beauté, artisanat et services. Rejoignez-nous comme exposant ou visiteur.">
+<link rel="icon" href="images/logo.jpg">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@500;600;700;800&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#0a1c42;
+    --bg-2:#122a5c;
+    --ink:#fdfaf3;
+    --ink-dim:rgba(253,250,243,.74);
+    --red:#e6332e;
+    --yellow:#f7b500;
+    --blue:#1f4fd6;
+    --white:#ffffff;
+    --accent:var(--red);
+    --accent-2:var(--yellow);
+    --card-bg:#0f2350;
+    --radius-pill:999px;
+    --font-display:'Baloo 2',ui-rounded,'Segoe UI',sans-serif;
+    --font-ui:'Inter',system-ui,sans-serif;
+  }
+  *{margin:0;padding:0;box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{
+    font-family:var(--font-ui);color:var(--ink);background:var(--bg);
+    overflow-x:hidden;-webkit-font-smoothing:antialiased;
+  }
+  img{max-width:100%;display:block}
+  a{color:inherit;text-decoration:none}
+  section{padding:12vh 8vw}
+  h1,h2,h3{font-family:var(--font-display)}
+
+  .stripe{
+    height:6px;width:100%;
+    background:repeating-linear-gradient(90deg,var(--red) 0 8%,var(--yellow) 8% 16%,var(--blue) 16% 24%,var(--white) 24% 32%);
+  }
+
+  .kicker{
+    font:700 12px/1 var(--font-ui);letter-spacing:.18em;text-transform:uppercase;
+    color:var(--accent-2);
+  }
+  .btn-pill{
+    display:inline-flex;align-items:center;gap:8px;
+    padding:14px 26px;border-radius:var(--radius-pill);
+    background:var(--accent);color:#fff;font:700 13px/1 var(--font-ui);
+    letter-spacing:.06em;text-transform:uppercase;border:none;cursor:pointer;
+    transition:transform .25s ease,box-shadow .25s ease;
+  }
+  .btn-pill:hover{transform:translateY(-2px);box-shadow:0 10px 24px rgba(230,51,46,.4)}
+  .btn-pill.alt{background:var(--yellow);color:#241800}
+  .btn-pill.alt:hover{box-shadow:0 10px 24px rgba(247,181,0,.4)}
+  .btn-pill.ghost{background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.35)}
+  .btn-pill .chev{transition:transform .25s ease}
+  .btn-pill:hover .chev{transform:translateX(4px)}
+
+  /* ---- NAV PRINCIPALE ---- */
+  header.main-nav{
+    position:fixed;top:0;left:0;right:0;z-index:50;
+    display:flex;align-items:center;justify-content:space-between;
+    padding:14px 6vw;
+    background:linear-gradient(180deg,rgba(6,14,34,.92),rgba(6,14,34,.55) 80%,transparent);
+    backdrop-filter:blur(6px);
+  }
+  .brand{display:flex;align-items:center;gap:12px}
+  .brand img{width:44px;height:44px;border-radius:50%;object-fit:cover;background:#fff;padding:2px}
+  .brand span{font-family:var(--font-display);font-weight:700;font-size:18px;letter-spacing:.02em}
+  .main-links{display:flex;gap:30px;list-style:none}
+  .main-links a{font:700 12px/1 var(--font-ui);letter-spacing:.12em;text-transform:uppercase;opacity:.9;padding-bottom:4px;border-bottom:2px solid transparent;transition:opacity .2s,border-color .2s}
+  .main-links a:hover{opacity:1;border-color:var(--yellow)}
+  .nav-right{display:flex;align-items:center;gap:12px}
+  .nav-cta{padding:10px 20px;border-radius:var(--radius-pill);background:var(--red);
+    font:700 11px/1 var(--font-ui);letter-spacing:.08em;text-transform:uppercase;white-space:nowrap}
+  .burger{display:none;flex-direction:column;gap:5px;background:none;border:none;cursor:pointer;padding:8px;z-index:60}
+  .burger span{width:24px;height:2px;background:var(--ink);display:block}
+  .mobile-menu{display:none;position:fixed;inset:0;z-index:45;background:var(--bg-2);
+    flex-direction:column;align-items:center;justify-content:center;gap:28px}
+  .mobile-menu.open{display:flex}
+  .mobile-menu a{font:700 16px/1 var(--font-ui);letter-spacing:.1em;text-transform:uppercase}
+
+  /* ---- HERO ---- */
+  .hero{
+    position:relative;min-height:100vh;display:flex;flex-direction:column;
+    justify-content:center;align-items:center;text-align:center;padding:120px 24px 0;
+    background:
+      linear-gradient(180deg, rgba(6,14,36,.55) 0%, rgba(6,14,36,.84) 55%, var(--bg) 97%),
+      linear-gradient(120deg, rgba(230,51,46,.32), rgba(10,20,56,.7) 65%),
+      url('images/stand-cosmetiques.jpg');
+    background-size:cover;background-position:center 30%;
+  }
+  .hero .eyebrow{
+    padding:8px 18px;border-radius:var(--radius-pill);background:rgba(255,255,255,.12);
+    border:1px solid rgba(255,255,255,.25);
+    font:700 12px/1 var(--font-ui);letter-spacing:.16em;text-transform:uppercase;
+  }
+  .hero h1{
+    margin-top:22px;
+    font-size:clamp(46px,9vw,108px);
+    font-weight:800;line-height:.98;letter-spacing:-.01em;
+    text-shadow:0 10px 40px rgba(0,0,0,.4);
+  }
+  .hero .sub{
+    margin-top:16px;display:inline-block;padding:7px 18px;border-radius:6px;
+    background:var(--yellow);color:#241800;font:800 13px/1 var(--font-ui);
+    letter-spacing:.16em;text-transform:uppercase;
+  }
+  .hero p.tagline{margin-top:22px;max-width:52ch;color:var(--ink-dim);font-size:17px;line-height:1.6}
+  .hero .ctas{margin-top:32px;display:flex;gap:16px;flex-wrap:wrap;justify-content:center}
+  .hero .dates{
+    margin-top:44px;display:flex;gap:36px;align-items:center;flex-wrap:wrap;justify-content:center;
+  }
+  .hero .dates .divider{width:1px;height:44px;background:rgba(255,255,255,.25)}
+  .hero .dates .block{text-align:left}
+  .hero .dates .label{font:800 11px/1 var(--font-ui);letter-spacing:.14em;text-transform:uppercase;opacity:.7}
+  .hero .dates .value{margin-top:6px;font:700 17px/1 var(--font-ui);letter-spacing:.02em}
+
+  /* ---- SOUS-NAV PILULE STICKY ---- */
+  .subnav-wrap{position:sticky;top:82px;z-index:30;display:flex;justify-content:center;margin:-34px 0 0;padding:0 16px}
+  .subnav{
+    display:flex;align-items:center;gap:22px;background:#fffdf9;color:#111a33;
+    border-radius:var(--radius-pill);padding:12px 24px;box-shadow:0 20px 50px rgba(0,0,0,.4);
+    max-width:94vw;overflow-x:auto;
+  }
+  .subnav .crumb{color:var(--red);font:700 12px/1 var(--font-ui);letter-spacing:.06em;text-transform:uppercase;white-space:nowrap}
+  .subnav .sep{width:1px;height:16px;background:rgba(0,0,0,.15);flex:0 0 auto}
+  .subnav a{font:700 13px/1 var(--font-ui);white-space:nowrap;padding-bottom:4px;border-bottom:2px solid transparent}
+  .subnav a.active{border-color:var(--red);color:var(--red)}
+
+  /* ---- BLOC NARRATIF ALTERNÉ ---- */
+  .story{display:grid;grid-template-columns:1.05fr 1fr;gap:60px;align-items:center}
+  .story.reverse{grid-template-columns:1fr 1.05fr}
+  .story.reverse .story-media{order:2}
+  .story-media{position:relative;border-radius:20px;overflow:hidden;aspect-ratio:4/3;
+    background:linear-gradient(140deg,var(--bg-2),#000);box-shadow:0 30px 60px rgba(0,0,0,.35)}
+  .story-media img{width:100%;height:100%;object-fit:cover}
+  .story h2{font-size:clamp(26px,4vw,42px);font-weight:700;margin:10px 0 16px;max-width:16ch}
+  .story p{color:var(--ink-dim);line-height:1.65;max-width:50ch;margin-bottom:24px}
+
+  /* ---- GRILLE SECTEURS ---- */
+  .highlights h2{font-size:clamp(28px,4vw,40px);margin-bottom:10px}
+  .highlights .intro{color:var(--ink-dim);max-width:60ch;margin-bottom:40px;line-height:1.6}
+  .card-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:22px}
+  .card{position:relative;border-radius:16px;overflow:hidden;aspect-ratio:3/4;
+    background:linear-gradient(160deg,var(--card-bg),#000);cursor:default}
+  .card img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;transition:transform .5s ease}
+  .card:hover img{transform:scale(1.06)}
+  .card::after{content:"";position:absolute;inset:0;
+    background:linear-gradient(180deg,transparent 35%,rgba(6,10,26,.92) 100%)}
+  .card-body{position:absolute;left:0;right:0;bottom:0;padding:20px;z-index:2}
+  .card h3{font:700 17px/1.25 var(--font-ui);margin-bottom:6px;font-family:var(--font-ui)}
+  .card p{font-size:12.5px;color:var(--ink-dim)}
+
+  /* ---- CTA EXPOSANT ---- */
+  .exposant-cta{
+    margin-top:56px;border-radius:24px;padding:44px 40px;
+    background:linear-gradient(120deg,var(--bg-2),#0a1638);
+    border:1px solid rgba(255,255,255,.1);
+    display:grid;grid-template-columns:1.2fr 1fr;gap:40px;align-items:center;
+  }
+  .exposant-cta h3{font-size:clamp(22px,3vw,30px);margin-bottom:12px}
+  .exposant-cta p{color:var(--ink-dim);line-height:1.6;max-width:48ch}
+  .exposant-cta .actions{display:flex;flex-direction:column;gap:14px}
+  .exposant-cta .contact-line{display:flex;align-items:center;gap:10px;font:600 14px/1 var(--font-ui)}
+  .exposant-cta .contact-line .dot{width:8px;height:8px;border-radius:50%;background:var(--yellow);flex:0 0 auto}
+
+  /* ---- GALERIE ---- */
+  .gallery-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+  .gallery-grid a{position:relative;border-radius:14px;overflow:hidden;aspect-ratio:1/1;display:block}
+  .gallery-grid img{width:100%;height:100%;object-fit:cover;transition:transform .5s ease,filter .3s ease}
+  .gallery-grid a:hover img{transform:scale(1.07)}
+  .gallery-grid a::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,transparent 60%,rgba(6,10,26,.7));opacity:0;transition:opacity .3s}
+  .gallery-grid a:hover::after{opacity:1}
+
+  /* ---- IMPACT NUMBERS ---- */
+  .stats{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;margin-top:8px}
+  .stat{text-align:center;padding:26px 16px;border-radius:16px;background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.08)}
+  .stat .num{font-family:var(--font-display);font-size:clamp(30px,4vw,44px);font-weight:800;color:var(--yellow)}
+  .stat .lbl{margin-top:6px;font:700 12px/1.3 var(--font-ui);letter-spacing:.06em;text-transform:uppercase;color:var(--ink-dim)}
+
+  /* ---- CONTACT ---- */
+  .contact-wrap{display:grid;grid-template-columns:1fr 1fr;gap:50px;align-items:start}
+  .contact-card{background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.1);border-radius:20px;padding:34px}
+  .contact-card .row{display:flex;gap:14px;align-items:flex-start;margin-bottom:22px}
+  .contact-card .row:last-child{margin-bottom:0}
+  .contact-card .ic{width:40px;height:40px;border-radius:50%;background:rgba(247,181,0,.15);
+    display:flex;align-items:center;justify-content:center;flex:0 0 auto;color:var(--yellow)}
+  .contact-card .row h4{font-size:14px;letter-spacing:.04em;margin-bottom:4px}
+  .contact-card .row p, .contact-card .row a{color:var(--ink-dim);font-size:14px;line-height:1.5}
+  .socials{display:flex;gap:12px;margin-top:26px}
+  .socials a{width:42px;height:42px;border-radius:50%;background:rgba(255,255,255,.08);
+    display:flex;align-items:center;justify-content:center;transition:background .2s,transform .2s}
+  .socials a:hover{background:var(--red);transform:translateY(-3px)}
+  .map-frame{border-radius:20px;overflow:hidden;border:1px solid rgba(255,255,255,.1);aspect-ratio:4/3.4}
+  .map-frame iframe{width:100%;height:100%;border:0;filter:grayscale(.15) contrast(1.05)}
+
+  /* ---- REVEAL ---- */
+  .reveal{opacity:0;transform:translateY(28px);transition:opacity .7s ease,transform .7s ease}
+  .reveal.in{opacity:1;transform:none}
+
+  footer{padding:8vh 8vw 5vh;background:#050c22;text-align:center}
+  footer .brand{justify-content:center;margin-bottom:18px}
+  footer .foot-links{display:flex;gap:24px;justify-content:center;flex-wrap:wrap;margin:20px 0;list-style:none}
+  footer .foot-links a{font:700 12px/1 var(--font-ui);letter-spacing:.1em;text-transform:uppercase;opacity:.8}
+  footer .socials{justify-content:center}
+  footer .legal{margin-top:26px;font-size:12px;color:var(--ink-dim);line-height:1.7}
+
+  @media (max-width:980px){
+    .card-grid{grid-template-columns:repeat(2,1fr)}
+    .exposant-cta{grid-template-columns:1fr}
+    .contact-wrap{grid-template-columns:1fr}
+  }
+  @media (max-width:820px){
+    .main-links{display:none}
+    .nav-cta{display:none}
+    .burger{display:flex}
+    .story, .story.reverse{grid-template-columns:1fr;gap:32px}
+    .story.reverse .story-media{order:0}
+    .subnav-wrap{top:70px}
+    .gallery-grid{grid-template-columns:repeat(2,1fr)}
+    .stats{grid-template-columns:1fr 1fr}
+    section{padding:10vh 6vw}
+  }
+  @media (max-width:520px){
+    .card-grid{grid-template-columns:1fr}
+    .gallery-grid{grid-template-columns:1fr 1fr}
+    .stats{grid-template-columns:1fr}
+    .hero .dates{gap:20px}
+  }
+  @media (prefers-reduced-motion:reduce){
+    html{scroll-behavior:auto}
+    .reveal{opacity:1;transform:none;transition:none}
+  }
+</style>
+</head>
+<body>
+
+  <header class="main-nav">
+    <a href="#accueil" class="brand">
+      <img src="images/logo.jpg" alt="Logo Elembo Na Biso">
+      <span>Elembo Na Biso</span>
+    </a>
+    <ul class="main-links">
+      <li><a href="#apropos">À propos</a></li>
+      <li><a href="#exposants">Exposants</a></li>
+      <li><a href="#galerie">Galerie</a></li>
+      <li><a href="#impact">Impact</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+    <div class="nav-right">
+      <a class="nav-cta" href="#exposants">Devenir exposant</a>
+      <button class="burger" aria-label="Ouvrir le menu" onclick="document.getElementById('mobileMenu').classList.toggle('open')">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </header>
+
+  <div class="mobile-menu" id="mobileMenu">
+    <a href="#accueil" onclick="document.getElementById('mobileMenu').classList.remove('open')">Accueil</a>
+    <a href="#apropos" onclick="document.getElementById('mobileMenu').classList.remove('open')">À propos</a>
+    <a href="#exposants" onclick="document.getElementById('mobileMenu').classList.remove('open')">Exposants</a>
+    <a href="#galerie" onclick="document.getElementById('mobileMenu').classList.remove('open')">Galerie</a>
+    <a href="#impact" onclick="document.getElementById('mobileMenu').classList.remove('open')">Impact</a>
+    <a href="#contact" onclick="document.getElementById('mobileMenu').classList.remove('open')">Contact</a>
+  </div>
+
+  <section class="hero" id="accueil">
+    <span class="eyebrow">Kinshasa · Bandalungwa, RDC</span>
+    <h1>Elembo Na Biso</h1>
+    <span class="sub">Foire des Entrepreneurs</span>
+    <p class="tagline">Le rendez-vous qui met en lumière les entrepreneurs congolais : mode, beauté, artisanat et services réunis sous un même toit pour se faire connaître, échanger et grandir ensemble.</p>
+    <div class="ctas">
+      <a class="btn-pill" href="#exposants">Devenir exposant <span class="chev">›</span></a>
+      <a class="btn-pill ghost" href="#contact">Nous contacter <span class="chev">›</span></a>
+    </div>
+    <div class="dates">
+      <div class="block">
+        <div class="label">Prochaine édition</div>
+        <div class="value">Dates à venir — restez connectés</div>
+      </div>
+      <div class="divider"></div>
+      <div class="block">
+        <div class="label">Lieu</div>
+        <div class="value">Kinshasa, RD Congo</div>
+      </div>
+    </div>
+  </section>
+
+  <div class="subnav-wrap">
+    <nav class="subnav">
+      <span class="crumb">Elembo Na Biso</span>
+      <span class="sep"></span>
+      <a class="active" href="#accueil">Accueil</a>
+      <a href="#apropos">À propos</a>
+      <a href="#exposants">Exposants</a>
+      <a href="#galerie">Galerie</a>
+      <a href="#impact">Impact</a>
+      <a href="#contact">Contact</a>
+    </nav>
+  </div>
+
+  <section id="apropos">
+    <div class="story reveal">
+      <div class="story-media"><img src="images/demo-soins.jpg" alt="Démonstration de produits capillaires lors de la foire Elembo Na Biso"></div>
+      <div>
+        <span class="kicker">Notre mission</span>
+        <h2>Un tremplin pour les entrepreneurs d'ici</h2>
+        <p>« Elembo na biso » — « notre marque », « notre emblème » en lingala. C'est l'idée fondatrice : offrir aux entrepreneurs congolais un espace où présenter leur savoir-faire, rencontrer leur public et faire rayonner le "Made in RDC".</p>
+        <p>À chaque édition, la Foire des Entrepreneurs rassemble des dizaines de porteurs de projets — cosmétique, mode, bijouterie, hygiène, artisanat, services — dans une ambiance chaleureuse, conviviale et résolument locale.</p>
+        <a class="btn-pill alt" href="#exposants">Voir les secteurs exposés <span class="chev">›</span></a>
+      </div>
+    </div>
+  </section>
+
+  <section class="highlights" id="exposants">
+    <span class="kicker">Ce que vous trouverez</span>
+    <h2>Des secteurs, un même élan entrepreneurial</h2>
+    <p class="intro">Chaque stand raconte l'histoire d'un entrepreneur congolais. Voici quelques univers que l'on retrouve à chaque édition de la foire.</p>
+    <div class="card-grid">
+      <div class="card reveal">
+        <img src="images/stand-cosmetiques.jpg" alt="Stand de cosmétiques et produits de beauté">
+        <div class="card-body">
+          <h3>Beauté &amp; Cosmétiques</h3>
+          <p>Soins, parfums et produits capillaires faits par des marques locales.</p>
+        </div>
+      </div>
+      <div class="card reveal">
+        <img src="images/demo-soins.jpg" alt="Démonstration en direct d'un produit capillaire">
+        <div class="card-body">
+          <h3>Démonstrations en direct</h3>
+          <p>Les exposants font vivre leurs produits et conseillent chaque visiteur.</p>
+        </div>
+      </div>
+      <div class="card reveal">
+        <img src="images/rencontre-exposants.jpg" alt="Échange entre exposantes autour d'un stand">
+        <div class="card-body">
+          <h3>Artisanat &amp; Bien-être</h3>
+          <p>Des créations pensées et fabriquées avec soin par des mains congolaises.</p>
+        </div>
+      </div>
+      <div class="card reveal">
+        <img src="images/foire-ambiance.jpg" alt="Visiteurs échangeant dans les allées de la foire">
+        <div class="card-body">
+          <h3>Rencontres &amp; Réseautage</h3>
+          <p>L'effervescence d'une foire pensée pour connecter talents et visiteurs.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="exposant-cta reveal">
+      <div>
+        <span class="kicker">Vous êtes entrepreneur ?</span>
+        <h3>Exposez à la prochaine édition</h3>
+        <p>Réservez votre stand et présentez votre marque à un public venu spécialement pour découvrir des entreprises congolaises. Contactez-nous pour connaître les modalités.</p>
+      </div>
+      <div class="actions">
+        <a class="btn-pill" href="mailto:elembonabis01@gmail.com?subject=Candidature%20Exposant%20-%20Foire%20des%20Entrepreneurs&body=Bonjour%20l'équipe%20Elembo%20Na%20Biso%2C%0A%0AJe%20souhaite%20candidater%20comme%20exposant%20à%20la%20prochaine%20Foire%20des%20Entrepreneurs.%0A%0ANom%20de%20l'entreprise%20%3A%20%0ASecteur%20d'activité%20%3A%20%0A%0AMerci%2C">Candidater par e-mail <span class="chev">›</span></a>
+        <div class="contact-line"><span class="dot"></span> 08 20 06 82 11</div>
+        <div class="contact-line"><span class="dot"></span> elembonabis01@gmail.com</div>
+      </div>
+    </div>
+  </section>
+
+  <section id="galerie">
+    <span class="kicker">Moments forts</span>
+    <h2 class="reveal" style="font-size:clamp(28px,4vw,40px);margin-bottom:34px">Revivre la foire en images</h2>
+    <div class="gallery-grid">
+      <a href="images/collage-foire-1.jpg" target="_blank" rel="noopener" class="reveal"><img src="images/collage-foire-1.jpg" alt="Souvenirs de la Foire des Entrepreneurs — bijoux et stands"></a>
+      <a href="images/collage-foire-2.jpg" target="_blank" rel="noopener" class="reveal"><img src="images/collage-foire-2.jpg" alt="Ambiance de la foire — mur des partenaires et scène"></a>
+      <a href="images/collage-produits.jpg" target="_blank" rel="noopener" class="reveal"><img src="images/collage-produits.jpg" alt="Stand de produits capillaires naturels"></a>
+      <a href="images/collage-scene.jpg" target="_blank" rel="noopener" class="reveal"><img src="images/collage-scene.jpg" alt="Scène et lumières guinguette de la foire"></a>
+      <a href="images/equipe-groupe-1.jpg" target="_blank" rel="noopener" class="reveal"><img src="images/equipe-groupe-1.jpg" alt="L'équipe Elembo Na Biso réunie"></a>
+      <a href="images/equipe-selfie.jpg" target="_blank" rel="noopener" class="reveal"><img src="images/equipe-selfie.jpg" alt="Selfie de l'équipe Elembo Na Biso"></a>
+    </div>
+  </section>
+
+  <section id="impact">
+    <div class="story reverse reveal">
+      <div class="story-media"><img src="images/impact-enfants.jpg" alt="Moment de partage avec des enfants — action Amour Bolingo"></div>
+      <div>
+        <span class="kicker">Au-delà de la foire</span>
+        <h2>Une communauté qui se soutient</h2>
+        <p>Elembo Na Biso, c'est aussi une équipe engagée sur le terrain, au plus près des familles et des enfants de Kinshasa. Dons de vivres, moments de partage, visites de solidarité : notre esprit d'entraide anime chaque action, de la foire aux quartiers.</p>
+        <p>Un même mot d'ordre porte tout ce que nous faisons : « Amour Bolingo » — l'amour comme moteur commun aux affaires et à la solidarité.</p>
+      </div>
+    </div>
+    <div class="stats reveal">
+      <div class="stat"><div class="num">100%</div><div class="lbl">Entrepreneurs congolais mis en avant</div></div>
+      <div class="stat"><div class="num">+ieurs</div><div class="lbl">Secteurs représentés à chaque édition</div></div>
+      <div class="stat"><div class="num">1</div><div class="lbl">Équipe, un esprit de famille</div></div>
+    </div>
+  </section>
+
+  <section id="contact">
+    <span class="kicker">Restons en contact</span>
+    <h2 class="reveal" style="font-size:clamp(28px,4vw,40px);margin-bottom:34px">Parlons de votre participation</h2>
+    <div class="contact-wrap">
+      <div class="contact-card reveal">
+        <div class="row">
+          <div class="ic">📍</div>
+          <div><h4>Adresse</h4><p>5091, Av. Kasa-Vubu, C. Bandalungwa<br>Kinshasa, RD Congo</p></div>
+        </div>
+        <div class="row">
+          <div class="ic">📞</div>
+          <div><h4>Téléphone</h4><a href="tel:+243820068211">0820 068 211</a></div>
+        </div>
+        <div class="row">
+          <div class="ic">✉️</div>
+          <div><h4>E-mail</h4><a href="mailto:elembonabis01@gmail.com">elembonabis01@gmail.com</a></div>
+        </div>
+        <div class="row">
+          <div class="ic">🧑🏽‍💼</div>
+          <div><h4>Coordinatrice</h4><p>Mariette Bonzela Akawi</p></div>
+        </div>
+        <div class="socials">
+          <a href="https://www.instagram.com/elembo_na_biso?igsh=b2M3ank3cTUwOHdw&utm_source=qr" target="_blank" rel="noopener" aria-label="Instagram">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1"/></svg>
+          </a>
+          <a href="https://www.tiktok.com/@elembo_nabiso?_r=1&_t=ZS-96Hc3EQ6gat" target="_blank" rel="noopener" aria-label="TikTok">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M16.5 2h-3v13.6a2.9 2.9 0 1 1-2.1-2.8v-3.1a6 6 0 1 0 5.1 5.9V8.9a7.7 7.7 0 0 0 4.5 1.4V7.3A4.6 4.6 0 0 1 16.5 2z"/></svg>
+          </a>
+          <a href="https://www.facebook.com/Elembonabiso" target="_blank" rel="noopener" aria-label="Facebook">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M13.5 21v-7.5H16l.5-3.2h-3V8.2c0-.9.3-1.5 1.7-1.5H16.6V3.8C16.3 3.8 15.2 3.7 14 3.7c-2.6 0-4.4 1.6-4.4 4.5v2.1H7v3.2h2.6V21h3.9z"/></svg>
+          </a>
+        </div>
+      </div>
+      <div class="map-frame reveal">
+        <iframe src="https://www.google.com/maps?q=5091+Avenue+Kasa-Vubu+Bandalungwa+Kinshasa&output=embed" loading="lazy" referrerpolicy="no-referrer-when-downgrade" title="Localisation Elembo Na Biso"></iframe>
+      </div>
+    </div>
+  </section>
+
+  <div class="stripe"></div>
+
+  <footer>
+    <a href="#accueil" class="brand">
+      <img src="images/logo.jpg" alt="Logo Elembo Na Biso" style="width:40px;height:40px;border-radius:50%;object-fit:cover;background:#fff;padding:2px">
+      <span style="font-family:var(--font-display);font-weight:700;font-size:18px">Elembo Na Biso</span>
+    </a>
+    <ul class="foot-links">
+      <li><a href="#apropos">À propos</a></li>
+      <li><a href="#exposants">Exposants</a></li>
+      <li><a href="#galerie">Galerie</a></li>
+      <li><a href="#impact">Impact</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+    <div class="socials">
+      <a href="https://www.instagram.com/elembo_na_biso?igsh=b2M3ank3cTUwOHdw&utm_source=qr" target="_blank" rel="noopener" aria-label="Instagram">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1"/></svg>
+      </a>
+      <a href="https://www.tiktok.com/@elembo_nabiso?_r=1&_t=ZS-96Hc3EQ6gat" target="_blank" rel="noopener" aria-label="TikTok">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M16.5 2h-3v13.6a2.9 2.9 0 1 1-2.1-2.8v-3.1a6 6 0 1 0 5.1 5.9V8.9a7.7 7.7 0 0 0 4.5 1.4V7.3A4.6 4.6 0 0 1 16.5 2z"/></svg>
+      </a>
+      <a href="https://www.facebook.com/Elembonabiso" target="_blank" rel="noopener" aria-label="Facebook">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M13.5 21v-7.5H16l.5-3.2h-3V8.2c0-.9.3-1.5 1.7-1.5H16.6V3.8C16.3 3.8 15.2 3.7 14 3.7c-2.6 0-4.4 1.6-4.4 4.5v2.1H7v3.2h2.6V21h3.9z"/></svg>
+      </a>
+    </div>
+    <div class="legal">
+      5091, Av. Kasa-Vubu, C. Bandalungwa, Kinshasa, RD Congo · 0820 068 211 · elembonabis01@gmail.com<br>
+      © 2026 Elembo Na Biso — Tous droits réservés.
+    </div>
+  </footer>
+
+  <script>
+    const io = new IntersectionObserver((entries) => {
+      entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('in'); });
+    }, { threshold: .15 });
+    document.querySelectorAll('.reveal').forEach(el => io.observe(el));
+
+    document.querySelectorAll('.subnav a').forEach(a => {
+      a.addEventListener('click', () => {
+        document.querySelectorAll('.subnav a').forEach(x => x.classList.remove('active'));
+        a.classList.add('active');
+      });
+    });
+  </script>
+</body>
+</html>
